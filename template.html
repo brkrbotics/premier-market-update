@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RE/MAX Premier — TRREB Market Stats</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --red:#FF1200; --blue:#0043FF; --dkred:#660000; --dkblue:#000E35;
+    --cream:#F7F5EE; --black:#000000;
+    --ink:#11161f; --muted:#5b6473; --line:#e3e0d6; --card:#ffffff;
+    --good:#0043FF; --hot:#FF1200; --cool:#1f8a4c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream); color:var(--ink); line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px; margin:0 auto; padding:18px 18px 40px}
+
+  /* Header */
+  header{
+    background:var(--dkblue); color:#fff; border-radius:14px;
+    padding:18px 20px; display:flex; flex-wrap:wrap; gap:14px;
+    align-items:center; justify-content:space-between;
+  }
+  header .brand{display:flex; align-items:center; gap:12px}
+  header .bar{width:6px; height:38px; background:var(--red); border-radius:3px}
+  header h1{font-size:19px; margin:0; font-weight:700; letter-spacing:.2px}
+  header .sub{font-size:12.5px; color:#aeb6d6; margin-top:2px}
+  .picker{display:flex; align-items:center; gap:8px}
+  .picker label{font-size:12px; color:#aeb6d6; text-transform:uppercase; letter-spacing:.6px}
+  select#region{
+    appearance:none; background:#fff; color:var(--dkblue); font-weight:700;
+    border:0; border-radius:9px; padding:9px 34px 9px 12px; font-size:14px; cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%23000E35' stroke-width='2' fill='none'/></svg>");
+    background-repeat:no-repeat; background-position:right 12px center;
+  }
+
+  h2.section{font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--muted);
+    margin:26px 4px 12px; font-weight:700}
+
+  /* Signals */
+  .signals{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px}
+  .chip{
+    background:var(--card); border:1px solid var(--line); border-left-width:5px;
+    border-radius:12px; padding:13px 15px;
+  }
+  .chip .t{font-size:13px; font-weight:800; letter-spacing:.3px; text-transform:uppercase}
+  .chip .d{font-size:13.5px; color:var(--muted); margin-top:5px}
+  .chip.hot{border-left-color:var(--red)}     .chip.hot .t{color:var(--red)}
+  .chip.cool{border-left-color:var(--cool)}   .chip.cool .t{color:var(--cool)}
+  .chip.neu{border-left-color:var(--blue)}    .chip.neu .t{color:var(--blue)}
+
+  /* KPI cards */
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:12px}
+  .kpi{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 15px}
+  .kpi .k{font-size:11.5px; text-transform:uppercase; letter-spacing:.6px; color:var(--muted); font-weight:700}
+  .kpi .v{font-size:25px; font-weight:800; margin-top:6px; color:var(--dkblue)}
+  .kpi .badge{display:inline-block; margin-top:8px; font-size:11px; font-weight:800;
+    padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:.5px}
+  .badge.seller{background:#ffe3df; color:var(--red)}
+  .badge.balanced{background:#e2e9ff; color:var(--blue)}
+  .badge.buyer{background:#dff0e6; color:var(--cool)}
+  .delta{font-size:12.5px; font-weight:700; margin-top:8px; display:flex; gap:10px; flex-wrap:wrap}
+  .up{color:var(--cool)} .down{color:var(--red)} .flat{color:var(--muted)}
+
+  /* Charts */
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 16px 8px}
+  .card .head{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px}
+  .card h3{margin:0; font-size:15px; color:var(--dkblue)}
+  .ranges{display:flex; gap:5px}
+  .ranges button{
+    border:1px solid var(--line); background:#fff; color:var(--muted); font-weight:700;
+    font-size:12px; padding:5px 11px; border-radius:8px; cursor:pointer;
+  }
+  .ranges button.on{background:var(--dkblue); color:#fff; border-color:var(--dkblue)}
+  .chartbox{position:relative; height:300px; margin-top:12px}
+  .grid2{display:grid; grid-template-columns:1fr; gap:16px}
+
+  footer{margin-top:26px; font-size:11.5px; color:var(--muted); text-align:center; line-height:1.6}
+  footer b{color:var(--dkblue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="bar"></div>
+      <div>
+        <h1>RE/MAX Premier — TRREB Market Stats</h1>
+        <div class="sub" id="asof">—</div>
+      </div>
+    </div>
+    <div class="picker">
+      <label for="region">Region</label>
+      <select id="region"></select>
+    </div>
+  </header>
+
+  <h2 class="section">Market Signals</h2>
+  <div class="signals" id="signals"></div>
+
+  <h2 class="section">This Month at a Glance</h2>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid2" style="margin-top:26px">
+    <div class="card">
+      <div class="head">
+        <h3>Price Trends</h3>
+        <div class="ranges" data-chart="price"></div>
+      </div>
+      <div class="chartbox"><canvas id="priceChart"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <h3>Market Balance — Sellers / Balanced / Buyers</h3>
+        <div class="ranges" data-chart="balance"></div>
+      </div>
+      <div class="chartbox"><canvas id="balanceChart"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <h3>Activity &amp; Speed</h3>
+        <div class="ranges" data-chart="activity"></div>
+      </div>
+      <div class="chartbox"><canvas id="activityChart"></canvas></div>
+    </div>
+  </div>
+
+  <footer>
+    Source: <b>Toronto Regional Real Estate Board (TRREB)</b> Market Watch, monthly resale figures.
+    Market type by Months of Inventory: <b>Seller's &lt;3 · Balanced 3–6 · Buyer's &gt;6</b>.
+    SNLR = Sales-to-New-Listings ratio. SP/LP = sale-to-list price. Prepared for RE/MAX Premier Inc.
+    agents — for professional use; not advice to consumers.
+  </footer>
+</div>
+
+<script>
+const DATA = {{DATA}};
+
+/* ---------- palette ---------- */
+const C = {red:'#FF1200', blue:'#0043FF', dkred:'#660000', dkblue:'#000E35',
+           cream:'#F7F5EE', cool:'#1f8a4c', muted:'#5b6473', line:'#e3e0d6'};
+
+/* ---------- helpers ---------- */
+const fmt = {
+  money: v => v==null ? '—' : '$'+Math.round(v).toLocaleString('en-CA'),
+  int:   v => v==null ? '—' : Math.round(v).toLocaleString('en-CA'),
+  pct1:  v => v==null ? '—' : (v*100).toFixed(1)+'%',   // stored decimal (0.357)
+  pct0:  v => v==null ? '—' : Math.round(v*100)+'%',
+  mo:    v => v==null ? '—' : v.toFixed(1),
+  signpct: v => v==null ? '—' : (v>=0?'+':'')+(v*100).toFixed(1)+'%',
+};
+const MONTHLONG = {'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun',
+  '07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec'};
+const prettyLabel = l => MONTHLONG[l.slice(5)]+" '"+l.slice(2,4);
+
+// MOI bucket using smoothed MOI Trend, falling back to Avg MOI.
+function moiOf(row){ return row.moiTrend!=null ? row.moiTrend : row.avgMOI; }
+function bucket(moi){
+  if(moi==null) return null;
+  if(moi<3)  return {key:'seller',   label:"Seller's Market",   cls:'seller', sent:'hot'};
+  if(moi<=6) return {key:'balanced', label:'Balanced Market',   cls:'balanced', sent:'neu'};
+  return       {key:'buyer',    label:"Buyer's Market",    cls:'buyer', sent:'cool'};
+}
+
+// Longest CURRENT consecutive run (rises / falls) ending at the latest value.
+// Returns {dir:1|-1|0, len, from, to} over the trailing non-null values.
+function streak(rows, field){
+  const xs = rows.map(r=>r[field]).filter(v=>v!=null);
+  if(xs.length<2) return {dir:0,len:0};
+  let i = xs.length-1;
+  const dir = Math.sign(xs[i] - xs[i-1]);   // direction of the most recent move
+  if(dir===0) return {dir:0,len:0,to:xs[i]};
+  let len = 1;                              // count of consecutive monthly moves in `dir`
+  i--;
+  while(i-1>=0 && Math.sign(xs[i]-xs[i-1])===dir){ len++; i--; }
+  return {dir, len, from:xs[i], to:xs[xs.length-1]};
+}
+
+/* ---------- signals ---------- */
+function buildSignals(rows){
+  const out=[];
+  const last = rows[rows.length-1];
+  const prev = rows[rows.length-2];
+
+  // 1. Market type
+  const b = bucket(moiOf(last));
+  if(b){
+    out.push({sent:b.sent, t:b.label,
+      d:`Months of inventory at ${fmt.mo(moiOf(last))}. ${b.key==='seller'?'Demand outpaces supply — favours sellers.':b.key==='buyer'?'Supply outpaces demand — favours buyers.':'Supply and demand roughly in line.'}`});
+    // 1b. bucket change vs prior month
+    const bp = prev ? bucket(moiOf(prev)) : null;
+    if(bp && bp.key!==b.key)
+      out.push({sent:b.sent, t:'Market Shift',
+        d:`Crossed from ${bp.label} into ${b.label} this month — a turning point worth watching.`});
+  }
+
+  // 2. SNLR streak
+  const s = streak(rows,'snlr');
+  if(s.len>=3)
+    out.push({sent:s.dir>0?'hot':'cool', t:`SNLR ${s.dir>0?'Rising':'Falling'} ${s.len} Mo.`,
+      d:`Sales-to-new-listings ${s.dir>0?'up':'down'} ${s.len} months straight (${fmt.pct1(s.from)} → ${fmt.pct1(s.to)}). ${s.dir>0?'Supply tightening — pressure building on prices.':'Supply loosening — pressure easing off prices.'}`});
+
+  // 3. MOI streak
+  const m = streak(rows.map(r=>({moi:moiOf(r)})),'moi');
+  if(m.len>=3)
+    out.push({sent:m.dir>0?'cool':'hot', t:`Inventory ${m.dir>0?'Building':'Tightening'} ${m.len} Mo.`,
+      d:`Months of inventory ${m.dir>0?'rose':'fell'} ${m.len} months straight (${fmt.mo(m.from)} → ${fmt.mo(m.to)}).`});
+
+  // 4. Avg price streak
+  const p = streak(rows,'avgPrice');
+  if(p.len>=3)
+    out.push({sent:p.dir>0?'cool':'hot', t:`Prices ${p.dir>0?'Climbing':'Sliding'} ${p.len} Mo.`,
+      d:`Average price ${p.dir>0?'up':'down'} ${p.len} months in a row (${fmt.money(p.from)} → ${fmt.money(p.to)}).`});
+
+  // 5. YoY price
+  if(last.yoy!=null)
+    out.push({sent: last.yoy>0?'cool':last.yoy<0?'hot':'neu', t:`Prices ${fmt.signpct(last.yoy)} YoY`,
+      d:`Average price is ${last.yoy>=0?'up':'down'} ${fmt.signpct(last.yoy).replace('-','')} versus the same month last year.`});
+
+  return out;
+}
+
+function renderSignals(rows){
+  const el=document.getElementById('signals');
+  el.innerHTML='';
+  buildSignals(rows).forEach(s=>{
+    const d=document.createElement('div');
+    d.className='chip '+s.sent;
+    d.innerHTML=`<div class="t">${s.t}</div><div class="d">${s.d}</div>`;
+    el.appendChild(d);
+  });
+}
+
+/* ---------- KPI cards ---------- */
+function deltaSpan(cur, base, kind){
+  if(cur==null||base==null) return '';
+  const diff = kind==='pct' ? (cur-base) : (cur/base - 1);
+  const cls = diff>0?'up':diff<0?'down':'flat';
+  const arrow = diff>0?'▲':diff<0?'▼':'■';
+  const txt = kind==='pct' ? ((diff>=0?'+':'')+(diff*100).toFixed(1)+'pts')
+                           : ((diff>=0?'+':'')+(diff*100).toFixed(1)+'%');
+  return `<span class="${cls}">${arrow} ${txt}</span>`;
+}
+
+function renderKpis(rows){
+  const last=rows[rows.length-1];
+  const prev=rows[rows.length-2];
+  const yago=rows.length>=13 ? rows[rows.length-13] : null;
+  const b=bucket(moiOf(last));
+  const dom = last.pdom!=null ? last.pdom : last.ldom;
+
+  const cards=[
+    {k:'Avg Price', v:fmt.money(last.avgPrice),
+      delta:`${prev?'<span class="flat">MoM</span> '+deltaSpan(last.avgPrice,prev.avgPrice):''} ${yago?'<span class="flat">YoY</span> '+deltaSpan(last.avgPrice,yago.avgPrice):''}`},
+    {k:'Median Price', v:fmt.money(last.median),
+      delta: yago&&yago.median? '<span class="flat">YoY</span> '+deltaSpan(last.median,yago.median):''},
+    {k:'Sales', v:fmt.int(last.sales),
+      delta: yago? '<span class="flat">YoY</span> '+deltaSpan(last.sales,yago.sales):''},
+    {k:'SNLR', v:fmt.pct1(last.snlr),
+      delta: prev&&prev.snlr!=null? '<span class="flat">MoM</span> '+deltaSpan(last.snlr,prev.snlr,'pct'):''},
+    {k:'Months of Inventory', v:fmt.mo(moiOf(last)),
+      badge: b?`<span class="badge ${b.cls}">${b.label.replace(' Market','')}</span>`:''},
+    {k:'New Listings', v:fmt.int(last.newList),
+      delta: yago? '<span class="flat">YoY</span> '+deltaSpan(last.newList,yago.newList):''},
+    {k:'SP / LP', v:fmt.pct0(last.splp),
+      delta: prev&&prev.splp!=null? '<span class="flat">MoM</span> '+deltaSpan(last.splp,prev.splp,'pct'):''},
+    {k:'Avg Days on Market', v: dom==null?'—':Math.round(dom)+' days', delta:''},
+  ];
+
+  const el=document.getElementById('kpis');
+  el.innerHTML='';
+  cards.forEach(c=>{
+    const d=document.createElement('div'); d.className='kpi';
+    d.innerHTML=`<div class="k">${c.k}</div><div class="v">${c.v}</div>`
+      + (c.badge?c.badge:'')
+      + (c.delta&&c.delta.trim()?`<div class="delta">${c.delta}</div>`:'');
+    el.appendChild(d);
+  });
+}
+
+/* ---------- charts ---------- */
+const RANGES = [{k:'1Y',n:12},{k:'3Y',n:36},{k:'5Y',n:60},{k:'All',n:null}];
+const chartState = {price:60, balance:60, activity:36};   // default months shown
+const charts = {};
+
+function slice(rows, n){ return n==null ? rows : rows.slice(Math.max(0, rows.length-n)); }
+const baseOpts = (extra={}) => Object.assign({
+  responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+  plugins:{legend:{labels:{boxWidth:12,font:{size:11}}}},
+  elements:{point:{radius:0,hitRadius:8}, line:{borderWidth:2,tension:.25}},
+}, extra);
+
+function renderPrice(rows){
+  const r=slice(rows, chartState.price);
+  const labels=r.map(x=>prettyLabel(x.label));
+  const cfg={type:'line', data:{labels, datasets:[
+    {label:'Avg Price', data:r.map(x=>x.avgPrice), borderColor:C.blue, backgroundColor:C.blue,
+      yAxisID:'y', spanGaps:false},
+    {label:'Median Price', data:r.map(x=>x.median), borderColor:C.dkblue, borderDash:[5,4],
+      yAxisID:'y', spanGaps:false},
+    {label:'YoY %', data:r.map(x=>x.yoy==null?null:x.yoy*100), borderColor:C.red,
+      yAxisID:'y1', spanGaps:false, borderWidth:1.5},
+  ]}, options:baseOpts({scales:{
+    y:{position:'left', ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'k', font:{size:10}}},
+    y1:{position:'right', grid:{drawOnChartArea:false}, ticks:{callback:v=>v+'%', font:{size:10}}},
+    x:{ticks:{maxTicksLimit:9, font:{size:10}}},
+  }})};
+  draw('priceChart','price',cfg);
+}
+
+function renderBalance(rows){
+  const r=slice(rows, chartState.balance);
+  const labels=r.map(x=>prettyLabel(x.label));
+  const cfg={type:'line', data:{labels, datasets:[
+    {label:'Months of Inventory', data:r.map(x=>moiOf(x)), borderColor:C.dkred,
+      yAxisID:'y', spanGaps:false, borderWidth:2.5},
+    {label:'SNLR %', data:r.map(x=>x.snlr==null?null:x.snlr*100), borderColor:C.blue,
+      yAxisID:'y1', spanGaps:false},
+    {label:'SP/LP %', data:r.map(x=>x.splp==null?null:x.splp*100), borderColor:C.cool,
+      yAxisID:'y1', spanGaps:false, borderDash:[4,4], borderWidth:1.5},
+  ]}, options:baseOpts({scales:{
+    y:{position:'left', title:{display:true,text:'Months of Inventory',font:{size:10}},
+       suggestedMin:0, suggestedMax:9, ticks:{font:{size:10}}},
+    y1:{position:'right', grid:{drawOnChartArea:false}, ticks:{callback:v=>v+'%',font:{size:10}}},
+    x:{ticks:{maxTicksLimit:9, font:{size:10}}},
+  }})};
+  cfg.plugins=[moiBandsPlugin];
+  draw('balanceChart','balance',cfg);
+}
+
+// Shaded Seller (<3) / Balanced (3-6) / Buyer (>6) zones on the MOI axis.
+const moiBandsPlugin = {
+  id:'moiBands',
+  beforeDatasetsDraw(chart){
+    const y=chart.scales.y; if(!y) return;
+    const {ctx, chartArea:a}=chart;
+    const yfor=v=>Math.max(a.top, Math.min(a.bottom, y.getPixelForValue(v)));
+    const bands=[[y.max,6,'rgba(31,138,76,0.07)'],[6,3,'rgba(0,67,255,0.06)'],[3,0,'rgba(255,18,0,0.06)']];
+    ctx.save();
+    bands.forEach(([hi,lo,col])=>{
+      const yt=yfor(hi), yb=yfor(lo);
+      ctx.fillStyle=col; ctx.fillRect(a.left, yt, a.right-a.left, yb-yt);
+    });
+    // threshold lines at 3 & 6
+    ctx.strokeStyle='rgba(0,0,0,0.18)'; ctx.setLineDash([3,3]); ctx.lineWidth=1;
+    [3,6].forEach(v=>{const yy=yfor(v); ctx.beginPath(); ctx.moveTo(a.left,yy); ctx.lineTo(a.right,yy); ctx.stroke();});
+    ctx.restore();
+  }
+};
+
+function renderActivity(rows){
+  const r=slice(rows, chartState.activity);
+  const labels=r.map(x=>prettyLabel(x.label));
+  const cfg={type:'bar', data:{labels, datasets:[
+    {type:'bar', label:'Sales', data:r.map(x=>x.sales), backgroundColor:'rgba(0,67,255,0.35)',
+      borderColor:C.blue, yAxisID:'y', order:3},
+    {type:'line', label:'New Listings', data:r.map(x=>x.newList), borderColor:C.red, yAxisID:'y',
+      spanGaps:false, order:1},
+    {type:'line', label:'Active Listings', data:r.map(x=>x.activeList), borderColor:C.dkred,
+      yAxisID:'y', spanGaps:false, order:2},
+    {type:'line', label:'Avg DOM', data:r.map(x=> x.pdom!=null?x.pdom:x.ldom), borderColor:C.dkblue,
+      borderDash:[4,4], yAxisID:'y1', spanGaps:false, borderWidth:1.5, order:0},
+  ]}, options:baseOpts({scales:{
+    y:{position:'left', ticks:{callback:v=>(v/1000).toFixed(0)+'k', font:{size:10}}},
+    y1:{position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'Days',font:{size:10}},
+        ticks:{font:{size:10}}},
+    x:{ticks:{maxTicksLimit:9, font:{size:10}}},
+  }})};
+  draw('activityChart','activity',cfg);
+}
+
+function draw(canvasId, key, cfg){
+  if(charts[key]) charts[key].destroy();
+  charts[key]=new Chart(document.getElementById(canvasId).getContext('2d'), cfg);
+}
+
+/* ---------- range buttons ---------- */
+function buildRangeButtons(){
+  document.querySelectorAll('.ranges').forEach(box=>{
+    const chart=box.dataset.chart;
+    RANGES.forEach(rg=>{
+      const b=document.createElement('button');
+      b.textContent=rg.k;
+      if((rg.n||9999)===chartState[chart] || (rg.n===null&&chartState[chart]===null)) b.classList.add('on');
+      b.onclick=()=>{
+        chartState[chart]=rg.n;
+        box.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+        b.classList.add('on');
+        renderCharts(currentRows());
+      };
+      box.appendChild(b);
+    });
+  });
+}
+
+/* ---------- orchestration ---------- */
+let CURRENT='TRREB';
+function currentRows(){ return DATA.regions[CURRENT]; }
+
+function renderCharts(rows){ renderPrice(rows); renderBalance(rows); renderActivity(rows); }
+
+function renderAll(){
+  const rows=currentRows();
+  const last=rows[rows.length-1];
+  document.getElementById('asof').textContent =
+    `${CURRENT==='TRREB'?'All TRREB Areas':CURRENT} · latest data ${MONTHLONG[last.label.slice(5)]} ${last.year}`;
+  renderSignals(rows);
+  renderKpis(rows);
+  renderCharts(rows);
+}
+
+function init(){
+  const sel=document.getElementById('region');
+  DATA.order.forEach(name=>{
+    const o=document.createElement('option');
+    o.value=name; o.textContent = name==='TRREB'?'All TRREB Areas':name;
+    sel.appendChild(o);
+  });
+  sel.value=CURRENT;
+  sel.onchange=()=>{ CURRENT=sel.value; renderAll(); };
+  buildRangeButtons();
+  renderAll();
+}
+init();
+</script>
+</body>
+</html>

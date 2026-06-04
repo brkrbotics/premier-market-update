@@ -1,0 +1,43 @@
+name: Update market dashboard
+
+# Runs when a new TRREB report PDF is uploaded to reports/, or on a manual click.
+on:
+  push:
+    paths:
+      - 'reports/**.pdf'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pdfplumber openpyxl
+
+      - name: Run pipeline (extract -> append workbook -> regenerate dashboard)
+        run: python pipeline.py
+
+      - name: Commit & push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mw-historic-data.xlsx index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update dashboard (${GITHUB_SHA::7})"
+            git push
+          fi
