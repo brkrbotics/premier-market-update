@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: market-update
@@ -31,6 +32,7 @@ jobs:
         run: python pipeline.py
 
       - name: Commit & push results
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -40,4 +42,14 @@ jobs:
           else
             git commit -m "Auto-update dashboard (${GITHUB_SHA::7})"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # A push made with GITHUB_TOKEN does NOT trigger the Pages build (GitHub
+      # anti-recursion safeguard), so the freshly-committed dashboard would never
+      # go live. Explicitly request a Pages rebuild of the just-pushed commit.
+      - name: Trigger GitHub Pages rebuild
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
