@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RE/MAX Premier — TRREB Market Stats</title>
+<title>GTA Market Update</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root{
@@ -81,6 +81,14 @@
   .chartbox{position:relative; height:300px; margin-top:12px}
   .grid2{display:grid; grid-template-columns:1fr; gap:16px}
 
+  /* Agent commentary */
+  .note{
+    background:var(--card); border:1px solid var(--line); border-left:5px solid var(--dkblue);
+    border-radius:12px; padding:14px 16px; margin-top:12px; display:none;
+  }
+  .note .nlabel{font-size:11px; font-weight:800; letter-spacing:.8px; text-transform:uppercase; color:var(--blue)}
+  .note p{font-size:14px; line-height:1.55; margin:8px 0 0; color:var(--ink)}
+
   footer{margin-top:26px; font-size:11.5px; color:var(--muted); text-align:center; line-height:1.6}
   footer b{color:var(--dkblue)}
 </style>
@@ -92,7 +100,7 @@
     <div class="brand">
       <div class="bar"></div>
       <div>
-        <h1>RE/MAX Premier — TRREB Market Stats</h1>
+        <h1>GTA Market Update</h1>
         <div class="sub" id="asof">—</div>
       </div>
     </div>
@@ -107,6 +115,10 @@
 
   <h2 class="section">This Month at a Glance</h2>
   <div class="kpis" id="kpis"></div>
+  <div class="note" id="note-kpis">
+    <div class="nlabel">What this means for your clients</div>
+    <div class="nbody"></div>
+  </div>
 
   <div class="grid2" style="margin-top:26px">
     <div class="card">
@@ -115,6 +127,10 @@
         <div class="ranges" data-chart="price"></div>
       </div>
       <div class="chartbox"><canvas id="priceChart"></canvas></div>
+      <div class="note" id="note-price">
+        <div class="nlabel">Talking price with buyers and sellers</div>
+        <div class="nbody"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -123,6 +139,10 @@
         <div class="ranges" data-chart="balance"></div>
       </div>
       <div class="chartbox"><canvas id="balanceChart"></canvas></div>
+      <div class="note" id="note-balance">
+        <div class="nlabel">Who has the leverage</div>
+        <div class="nbody"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -131,19 +151,24 @@
         <div class="ranges" data-chart="activity"></div>
       </div>
       <div class="chartbox"><canvas id="activityChart"></canvas></div>
+      <div class="note" id="note-activity">
+        <div class="nlabel">Activity and days on market</div>
+        <div class="nbody"></div>
+      </div>
     </div>
   </div>
 
   <footer>
     Source: <b>Toronto Regional Real Estate Board (TRREB)</b> Market Watch, monthly resale figures.
-    Market type by Months of Inventory: <b>Seller's &lt;3 · Balanced 3–6 · Buyer's &gt;6</b>.
-    SNLR = Sales-to-New-Listings ratio. SP/LP = sale-to-list price. Prepared for RE/MAX Premier Inc.
-    agents — for professional use; not advice to consumers.
+    Market type by Months of Inventory: <b>Seller's under 3 · Balanced 3 to 6 · Buyer's over 6</b>.
+    SNLR = Sales-to-New-Listings ratio. SP/LP = sale-to-list price.
+    Prepared for real estate professionals. For professional use, not advice to consumers.
   </footer>
 </div>
 
 <script>
 const DATA = {{DATA}};
+const COMMENTARY = {{COMMENTARY}};
 
 /* ---------- palette ---------- */
 const C = {red:'#FF1200', blue:'#0043FF', dkred:'#660000', dkblue:'#000E35',
@@ -287,6 +312,28 @@ function renderKpis(rows){
   });
 }
 
+/* ---------- agent commentary ---------- */
+// Commentary only renders when it was written for the month the data shows —
+// a stale commentary.json hides rather than describing the wrong month.
+function esc(s){const d=document.createElement('div'); d.textContent=s; return d.innerHTML;}
+function renderCommentary(rows){
+  const last=rows[rows.length-1];
+  const region = COMMENTARY && COMMENTARY.period===last.label && COMMENTARY.regions
+    ? COMMENTARY.regions[CURRENT] : null;
+  ['kpis','price','balance','activity'].forEach(key=>{
+    const el=document.getElementById('note-'+key);
+    if(!el) return;
+    const txt=region && region[key];
+    if(txt && typeof txt==='string' && txt.trim()){
+      el.querySelector('.nbody').innerHTML =
+        txt.trim().split(/\n\n+/).map(p=>'<p>'+esc(p)+'</p>').join('');
+      el.style.display='block';
+    } else {
+      el.style.display='none';
+    }
+  });
+}
+
 /* ---------- charts ---------- */
 const RANGES = [{k:'1Y',n:12},{k:'3Y',n:36},{k:'5Y',n:60},{k:'All',n:null}];
 const chartState = {price:60, balance:60, activity:36};   // default months shown
@@ -415,6 +462,7 @@ function renderAll(){
     `${CURRENT==='TRREB'?'All TRREB Areas':CURRENT} · latest data ${MONTHLONG[last.label.slice(5)]} ${last.year}`;
   renderSignals(rows);
   renderKpis(rows);
+  renderCommentary(rows);
   renderCharts(rows);
 }
 
