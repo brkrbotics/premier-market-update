@@ -27,6 +27,7 @@ EXTRACTOR = ROOT / "extract_trreb.py"
 XLSX = ROOT / "mw-historic-data.xlsx"
 TEMPLATE = ROOT / "template.html"
 DASHBOARD = ROOT / "index.html"          # GitHub Pages serves this
+COMMENTARY_JSON = ROOT / "commentary.json"   # written by generate_commentary.py
 
 ORDER = ["TRREB", "Halton", "Peel", "Toronto", "York Region", "Durham", "Dufferin", "Simcoe"]
 REGION_TO_AREA = {
@@ -187,15 +188,32 @@ def region_rows(ws):
     return out
 
 
+def load_commentary():
+    # The dashboard renders without commentary if the file is absent or unreadable —
+    # the writing step must never be able to break the data pipeline.
+    if not COMMENTARY_JSON.exists():
+        return None
+    try:
+        return json.loads(COMMENTARY_JSON.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"      WARNING: ignoring unreadable {COMMENTARY_JSON.name}: {e}")
+        return None
+
+
 def generate_dashboard():
     print(f"[3/3] Regenerating {DASHBOARD.name} from {TEMPLATE.name}")
     wb = openpyxl.load_workbook(XLSX, data_only=False)
     data = {"order": ORDER, "regions": {region: region_rows(wb[region]) for region in ORDER}}
     template = TEMPLATE.read_text(encoding="utf-8")
-    if "{{DATA}}" not in template:
-        raise SystemExit("template.html has no {{DATA}} placeholder.")
+    for placeholder in ("{{DATA}}", "{{COMMENTARY}}"):
+        if placeholder not in template:
+            raise SystemExit(f"template.html has no {placeholder} placeholder.")
     blob = json.dumps(data, separators=(",", ":"), ensure_ascii=False)
-    DASHBOARD.write_text(template.replace("{{DATA}}", blob), encoding="utf-8")
+    commentary_blob = json.dumps(load_commentary(), separators=(",", ":"), ensure_ascii=False)
+    DASHBOARD.write_text(
+        template.replace("{{DATA}}", blob).replace("{{COMMENTARY}}", commentary_blob),
+        encoding="utf-8",
+    )
     latest = data["regions"]["TRREB"][-1]
     print(f"      latest TRREB: {latest['label']}  avgPrice={latest['avgPrice']} "
           f"yoy={latest['yoy']} avgMOI={latest['avgMOI']}")
