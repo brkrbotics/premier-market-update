@@ -1,55 +1,55 @@
 {
-  "period": "2026-06",
-  "month": "June 2026",
-  "model": "reviewed-draft",
+  "period": "2026-07",
+  "month": "July 2026",
+  "model": "claude-opus-4-8",
   "regions": {
     "TRREB": {
-      "kpis": "The GTA is a balanced market, but the ground is shifting underneath it. Buyers came back this June, with 6,770 sales, up 9.4% from a year ago, while the supply of listings kept shrinking. The most useful thing you can tell a client right now: demand is quietly recovering into thinning inventory, and prices have not responded to that yet.",
-      "price": "The average GTA price sits at $1,058,658, down 1.0% from May and 3.9% below last June. The median is $890,000, off 6.3% year over year, which tells you the middle of the market is softer than the average suggests. For your buyers, that gap is real negotiating room. For your sellers, the comp that matters is the one that closed last month, not the peak sale on their street.",
-      "balance": "Months of inventory is 4.7 and the sales to new listings ratio has climbed to 36.5%, up 0.8 pts this month and up 5 months in a row. Buyers still hold the edge at the table, but that edge has narrowed every month since the winter. Show your clients the trend line, not just the snapshot.",
-      "activity": "New listings fell 12.9% year over year to 17,282, and active inventory is down 13.5% at 27,329. The average sale takes 42 days and closes at 98% of list. Fewer fresh listings with steady absorption means a well priced home still moves. The overpriced ones are what is holding the days on market average up."
+      "kpis": "July reads as a balanced market across TRREB, with the sales to new listings ratio now up 6 months in a row and months of inventory down 3 months in a row. The single most useful message for your clients is that the region has tightened steadily while staying balanced. That gives you room to set realistic expectations on both sides of a deal.",
+      "price": "The average price sits at $1,003,956, down 5.2% from last month and 4.5% from a year ago. The median came in at $860,000, off 5.5% year over year. Tell your sellers pricing has softened on both measures, and show your buyers that entry points are more forgiving than they were last summer.",
+      "balance": "With 4.6 months of inventory and a sales to new listings ratio of 37.1%, up 0.6 points, neither side holds a decisive edge. Properties are closing at 97% of list. Use that spread to keep sellers grounded on asking prices and to show buyers where reasonable offers land.",
+      "activity": "Sales reached 5,995, down 0.9% year over year, while new listings fell 17.8% to 14,484 and active listings dropped 12.1% to 26,098. Homes are taking 45 days to sell. With supply pulling back faster than demand, coach buyers to move deliberately rather than wait for a flood of choice."
     },
     "Halton": {
-      "kpis": "Halton is balanced on paper and tightening in practice. Sales rose to 785, up 5.2% from last June, while the supply side pulled back harder here than almost anywhere in the GTA. If your clients think every GTA market is soft, Halton is the exception you show them.",
-      "price": "The average price is $1,222,898, down 2.0% from May but 1.4% above last June, and the median of $1,060,000 is up 1.2% year over year. Halton is one of the few GTA regions where prices sit above last year. Buyers here should not expect the discounts they read about in the headlines, and sellers can point to a market that already found its floor.",
-      "balance": "Months of inventory is down to 4.3, falling 3 months in a row, and SNLR is at 39.1%, up 1.0 pts this month and up 5 months in a row. This is a balanced market drifting toward the seller's side. Buyers who negotiate like it is a buyer's market will lose good houses over small money.",
-      "activity": "New listings dropped 17.3% year over year to 1,846, with active inventory down 17.4% at 2,827. Homes average 41 days to sell at 97% of list. Supply is thinning faster than demand is growing, so sharp pricing gets showings and stale pricing sits."
+      "kpis": "Halton holds in balanced territory, with the sales to new listings ratio up 6 months in a row and months of inventory down 4 months in a row. The clearest point for your clients is that this region has been firming up quietly for half a year. Frame it as steady rather than sudden.",
+      "price": "The average price of $1,151,595 is down 5.8% month over month but still up 0.2% year over year, one of the few positive annual reads in the GTA. The median tells a softer story at $970,000, down 7.6% from last year. Walk your clients through both figures so nobody anchors to a single number.",
+      "balance": "At 4.2 months of inventory and a sales to new listings ratio of 39.5%, up 0.4 points, the negotiating table is even. Deals are landing at 96% of list price. That gap gives buyers a defensible starting point and reminds sellers that overreaching on price extends the wait.",
+      "activity": "Sales of 682 slipped 4.1% year over year, while new listings dropped 16.9% to 1,503 and active listings fell 15.3% to 2,659. At 52 days on market, patience is required on both sides. With inventory thinning, position well priced listings to stand out rather than assume time alone will produce an offer."
     },
     "Peel": {
-      "kpis": "Peel is a balanced market where the activity is back but the pricing power is not. Sales hit 1,167, up 9.8% year over year, one of the stronger demand rebounds in the GTA. Tell your clients the traffic has returned; the bidding wars have not.",
-      "price": "The average price is $966,024, up 1.0% from May but still 4.8% below last June, with the median at $875,000, down 6.5% year over year. The monthly uptick is worth noting to buyers who assume prices only move one way here. Sellers should anchor to current comps and let the improving sales pace do the persuading.",
-      "balance": "At 5.1 months of inventory, Peel gives buyers more selection than most of the GTA, but SNLR is 33.3%, up 0.9 pts this month and up 5 months in a row. Leverage favours your buyers today and a little less every month. Conditions in an offer are still achievable here; unreasonable prices are not.",
-      "activity": "New listings fell 16.2% year over year to 3,267 and active inventory is down 14.3% at 5,189. Average days on market is 48, closing at 98% of list. Buyers have time to be selective, but the shrinking supply says the window for slow decisions is not permanent."
+      "kpis": "Peel is a balanced market where sales are actually rising against a shrinking supply. The sales to new listings ratio has climbed 6 months in a row and months of inventory has eased 3 months in a row. Tell your clients demand is holding while listings pull back, which is the tension worth watching here.",
+      "price": "The average price is $910,007, down 5.8% from last month and 6.4% from a year ago. The median of $851,000 is off 5.4% year over year. Both readings point the same way, so give your sellers a candid picture and show your buyers the improvement in affordability versus last July.",
+      "balance": "With 5.0 months of inventory and a sales to new listings ratio of 34.0%, up 0.7 points, leverage is shared. Sales are completing at 97% of list. Use that ratio to keep sellers realistic and to help buyers calibrate offers that get taken seriously.",
+      "activity": "Sales rose 1.6% to 1,053 even as new listings fell 18.7% to 2,875 and active listings dropped 13.2% to 5,055. Homes are averaging 48 days to sell. With fewer listings competing, advise sellers to price accurately from day one and remind buyers that choice is narrowing."
     },
     "Toronto": {
-      "kpis": "The City of Toronto is a balanced market with the fastest sales pace in the region. Sales reached 2,443, up 6.1% from last June, against a shrinking pool of listings. The read for your clients: the city is absorbing inventory quicker than the numbers suggest at first glance.",
-      "price": "The average price is $1,081,375, down 2.4% from May and 4.7% year over year, while the median sits at $835,000, off 8.2%. That wide gap between average and median tells you more of the action is happening at lower price points. Buyers shopping the middle of the market have the most room to work; sellers there need the sharpest pricing.",
-      "balance": "Months of inventory is 4.7 and falling, down 3 months in a row, while SNLR is 37.4%, up 0.8 pts this month and up 5 months in a row. The balance of power is moving, not settled. A buyer who found no competition in the winter should expect some by now.",
-      "activity": "New listings dropped 13.6% year over year to 6,096, active inventory is down 14.4% at 10,047, and the average sale takes just 38 days at 99% of list. That 99% number is the one to show sellers: priced right, Toronto homes close within a point of ask."
+      "kpis": "Toronto sits in balanced territory with sales edging higher against tighter supply. The sales to new listings ratio is up 6 months in a row and months of inventory is down 4 months in a row. The most useful line for your clients is that the city is absorbing inventory faster while staying balanced overall.",
+      "price": "The average price of $1,010,836 fell 6.5% month over month and 3.3% year over year, the steepest monthly move among the regions. The median of $800,000 is down 5.9% from a year ago. Prepare sellers for a more competitive pricing environment and let buyers know the numbers have come toward them.",
+      "balance": "At 4.6 months of inventory and a sales to new listings ratio of 38.1%, up 0.7 points, neither party dictates terms. Closings are running at 97% of list. That consistency gives you a firm reference point when framing offers and counteroffers.",
+      "activity": "Sales climbed 2.4% to 2,242 while new listings dropped 17.2% to 4,980 and active listings fell 13.5% to 9,310. At 37 days on market, Toronto is the quickest mover in the GTA. Use that pace to press buyers on decisiveness and to justify sharp, accurate list prices for sellers."
     },
     "York Region": {
-      "kpis": "York Region posted the strongest demand recovery in the GTA this June, with 1,289 sales, up 22.2% from a year ago. The market is still balanced, but that kind of jump in activity is how tighter markets start. Clients sitting on the fence here should know the fence is getting crowded.",
-      "price": "The average price is $1,169,958, down 0.6% from May and 6.0% below last June, with the median at $1,050,888, off 9.2% year over year. Prices have not yet followed the surge in sales. For buyers that is the opportunity in plain sight; for sellers it means the comps still rule, even in a busier market.",
-      "balance": "Months of inventory is 5.1, down 3 months in a row, and SNLR is 34.8%, up 0.9 pts this month and up 5 months in a row. Buyers still have the numbers on their side, but the direction of every one of those numbers favours sellers. Negotiate hard now; explain to clients why the same offer may not work in the fall.",
-      "activity": "New listings slipped 6.9% year over year to 3,293 and active inventory is down 11.0% at 5,302. The average sale takes 45 days and closes at 98% of list. Demand is rising faster than supply is falling here, which is why days on market is the number to watch next."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     },
     "Durham": {
-      "kpis": "Durham is the tightest market in the GTA right now. At 3.4 months of inventory it sits just above seller's market territory, and prices have been up 3 months in a row. If your clients want to know where the recovery is furthest along, this is it.",
-      "price": "The average price is $856,170, up 0.6% from May though still 3.7% below last June, with the median at $805,000, down 4.2% year over year. The monthly gains matter more than the annual gap here because they show which way this market is moving. Buyers waiting for a lower entry point in Durham are watching it rise.",
-      "balance": "SNLR is 41.0%, the highest in the GTA, up 0.6 pts this month and up 4 months in a row. Sellers here have more leverage than anywhere else in the region. Buyers should come prepared with clean offers and realistic expectations about conditions.",
-      "activity": "New listings fell 10.2% year over year to 2,049, active inventory is down 9.7% at 2,637, and homes sell in an average of 36 days at 99% of list. Fastest sales, fullest prices. Sellers can be confident; buyers cannot be casual."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     },
     "Dufferin": {
-      "kpis": "Dufferin is a balanced market, and the smallest one on this dashboard, so read the percentages with care. Sales came in at 33, up 22.2% from last June, which is a real improvement but a small number of transactions. The honest framing for clients: the trend is positive, and one busy weekend can move these figures.",
-      "price": "The average price is $779,245, up 2.2% from May and 2.6% above last June, while the median of $734,000 is down 2.1% year over year. With volumes this small, the mix of homes sold drives the averages. Price against the three or four genuinely comparable sales, not the county wide number.",
-      "balance": "Months of inventory is 4.4 and SNLR is 40.8%, up 1.8 pts this month and up 3 months in a row. That ratio puts Dufferin closer to Durham than to the softer parts of the GTA. Sellers have more standing here than the region's quiet reputation suggests.",
-      "activity": "New listings fell 22.5% year over year to 86, with active inventory down 13.4% at 161. The average sale takes 68 days and closes at 97% of list. Patience is part of this market; the right buyer takes longer to arrive, but the closing numbers hold up when they do."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     },
     "Simcoe": {
-      "kpis": "Simcoe is the one true buyer's market left on this dashboard, and even here the tide is turning. Sales rose to 204, up 10.9% from last June, while inventory keeps thinning. Tell your buyers this is the most selection they are likely to see in the GTA's orbit, and tell them why that is changing.",
-      "price": "The average price is $869,159, down 0.8% from May and 8.3% below last June, the largest annual decline in the region. The median of $816,000 is only off 1.7%, so the typical home has held up far better than the average implies. Use both numbers with clients; the average alone oversells the discount.",
-      "balance": "At 6.1 months of inventory, down 3 months in a row, buyers hold the leverage, and SNLR at 31.4% confirms it, even though it is up 4 months in a row. This is the market for conditional offers, inspections and negotiation on price. It is also a market that is measurably tighter than it was in the spring.",
-      "activity": "New listings dropped 11.8% year over year to 645 and active inventory is down 10.8% at 1,166. Homes average 55 days on market and close at 97% of list. Buyers can take their time here; sellers need patience and a price that respects the competition."
+      "kpis": "",
+      "price": "",
+      "balance": ":",
+      "activity": ""
     }
   }
 }
