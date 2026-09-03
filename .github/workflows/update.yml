@@ -5,7 +5,12 @@ on:
   push:
     paths:
       - 'reports/**.pdf'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force_commentary:
+        description: 'Regenerate commentary.json even if it already covers the latest month'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -40,7 +45,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           pip install anthropic
-          python generate_commentary.py
+          python generate_commentary.py ${{ inputs.force_commentary == true && '--force' || '' }}
 
       - name: Commit & push results
         id: commit
