@@ -4,28 +4,28 @@
   "model": "claude-opus-4-8",
   "regions": {
     "TRREB": {
-      "kpis": "August reads as a balanced market across TRREB, with an SNLR of 37.5% and 4.6 months of inventory sitting near equilibrium. The most useful thing to tell clients is that neither side holds a clear edge right now, so pricing and preparation matter more than timing. Both your buyers and sellers can transact without the pressure of a fast market.",
-      "price": "The average price is $993,410, down 1.1% on the month and down 2.7% year over year, now down 3 months in a row. The median sits at $850,000, down 4.2% from last year. Tell your sellers that recent comparables carry more weight than spring numbers, and let your buyers know the softening is measured, not sudden.",
-      "balance": "With SNLR at 37.5%, up 0.4 points and now up 7 months in a row, absorption is slowly firming even as inventory stays comfortable. That combination keeps leverage close to even at the table. Your buyers have room to negotiate terms, while well priced listings still hold their ground.",
-      "activity": "Sales came in at 5,057, down 2.1% year over year, while new listings fell 14.1% to 12,075 and active listings dropped 11.3% to 24,482. Homes are averaging 51 days on market at 97% of list. The thinner supply tempers the sales dip, so counsel your sellers to price to the market and your buyers to move deliberately on the right fit."
+      "kpis": "The GTA is sitting in balanced territory this month at 4.8 months of inventory, and the most useful message for your clients is that neither side holds a clear edge. Average price came in at $993,410, down 1.1% from July and down 2.7% year over year, so pricing conversations should center on realistic expectations rather than momentum in either direction.",
+      "price": "With the average at $993,410 down three months in a row and the median at $850,000 down 4.2% year over year, tell your sellers that aggressive asking prices are meeting resistance. Frame offers for your buyers around recent solds, because the softening gives them room to negotiate without expecting steep discounts.",
+      "balance": "An SNLR of 37.5%, up 0.4 points and now rising seven months straight, points to demand slowly catching up to supply even as the market stays balanced. At the table, remind clients that leverage is close to even, so terms and conditions carry as much weight as price in getting a deal across.",
+      "activity": "Sales of 5,057 slipped 2.1% while new listings fell 14.1% and active inventory dropped 11.3%, so the pool of choices is thinning. With 51 days on market and a 97% sale to list ratio, coach your buyers to move deliberately on well priced homes and your sellers to price sharp from day one."
     },
     "Halton": {
-      "kpis": "Halton is a balanced market, but the momentum has cooled noticeably on price. The clearest message for clients is that supply has pulled back sharply while demand has eased too, keeping the region in equilibrium. Your sellers should expect a longer runway and your buyers should expect real room to negotiate.",
-      "price": "The average price is $1,110,436, down 3.6% for the month and down 4.2% year over year, marking 3 straight monthly declines. The median at $957,000 is down 6.1% from last year. Set seller expectations against current comparables, and remind your buyers that the pullback in this price tier is meaningful.",
-      "balance": "SNLR sits at 40.0%, up 0.5 points and up 7 months in a row, while months of inventory is 4.2. That points to a market where buyers can press on terms without losing the property to a bidding contest. Prepared sellers who price accurately still command attention.",
-      "activity": "Sales of 571 were down 10.2% year over year, and new listings fell 24.7% to 1,201 while active listings dropped 17.3% to 2,413. At 57 days on market and 96% of list, this is a patient market. The steep listing pullback is what keeps it balanced, so guide sellers to sharpen pricing and staging."
+      "kpis": "Halton is balanced at 4.2 months of inventory, but the numbers show a market cooling on the seller side. Average price of $1,110,436 fell 3.6% month over month and 4.2% year over year, so the clearest thing to tell clients is that patience and precise pricing matter more here than a year ago.",
+      "price": "The median at $957,000 is down 6.1% year over year, and with the average posting its third straight monthly decline, your sellers need to hear that last year's comparables no longer apply. Buyers should be encouraged to anchor offers to current data, where the softer trend gives them a stronger footing.",
+      "balance": "SNLR of 40.0% ticked up 0.5 points and has climbed seven months running, while months of inventory has risen three months in a row. That combination keeps things balanced but tilting slightly toward buyers, so at the table your buyers can push on price and conditions with more confidence.",
+      "activity": "Sales of 571 dropped 10.2% and new listings fell 24.7%, a sharp pullback in fresh supply that active listings, down 17.3%, partly reflects. With 57 days on market and a 96% sale to list ratio, tell your sellers that overpricing extends time on market, and buyers have breathing room to inspect before committing."
     },
     "Peel": {
-      "kpis": "Peel stands out as a balanced market where sales are actually rising against the trend. The most useful point for clients is that demand held up here even as new supply thinned. That gives your sellers a slightly steadier footing than neighbouring regions while your buyers still have selection.",
-      "price": "The average price is $908,415, essentially flat at down 0.2% on the month but down 5.2% year over year. The median holds at $850,000, down 4.5% from last year. Frame the story as prices that have stabilized month to month, and use annual comparables so your sellers price with realistic expectations.",
-      "balance": "SNLR is 34.8%, up 0.8 points and up 7 months in a row, while months of inventory sits at 4.9 and has fallen 4 months in a row. Tightening absorption is quietly shifting conditions, though buyers still have negotiating room. Watch this trend closely for your sellers.",
-      "activity": "Sales rose 4.7% to 940 even as new listings fell 22.7% to 2,298 and active listings dropped 14.8% to 4,706. Homes average 55 days on market at 97% of list. That mix of rising sales and shrinking supply favors accurately priced listings, so tell your buyers not to assume they hold all the leverage."
+      "kpis": "Peel holds a balanced market at 5.0 months of inventory, and it stands out as the region where sales actually grew. Average price of $908,415 was essentially flat month over month at down 0.2% but down 5.2% year over year, so tell clients demand is steady while values remain below last year.",
+      "price": "With the average nearly unchanged from July and the median at $850,000 down 4.5% year over year, the pricing story here is stability after a longer decline. Advise your sellers that the month over month steadiness supports a fair asking price, and let buyers know the year over year gap is where their leverage sits.",
+      "balance": "An SNLR of 34.8%, up 0.8 points and rising seven months in a row, is the strongest monthly gain among the core regions and signals demand firming against supply. Balance still holds, so at the negotiating table remind clients that neither party can dictate terms outright.",
+      "activity": "Sales rose 4.7% to 940 even as new listings fell 22.7% and active inventory dropped 14.8%, a tightening backdrop that supports pricing. With 55 days on market and a 97% sale to list ratio, coach your buyers not to assume deep discounts and your sellers that reasonable pricing is finding takers."
     },
     "Toronto": {
-      "kpis": "Toronto is a balanced market with sales holding almost perfectly flat year over year. The single most useful read for clients is that demand in the city has been steady while supply has tightened. Your buyers face a market that is neither frantic nor stalled, and your sellers benefit from firm underlying activity.",
-      "price": "The average price is $979,684, down 3.1% on the month and down 1.1% year over year, now down 3 months in a row. The median of $770,000 is down 3.7% from last year. The annual softness is mild here, so coach your sellers on realistic pricing and your buyers on measured negotiation.",
-      "balance": "SNLR sits at 38.3%, up 0.2 points and up 7 months in a row, with 4.6 months of inventory. Conditions are even, tilting slightly firmer as absorption improves. Your buyers can still negotiate, but sharply priced listings in the city move without long delays.",
-      "activity": "Sales of 1,767 were down just 0.2% year over year, while new listings fell 7.4% to 4,200 and active listings dropped 9.8% to 8,727. At 46 days on market and 97% of list, Toronto is turning faster than most GTA regions. Tell your buyers that well priced homes here do not linger, and your sellers that presentation pays off."
+      "kpis": "Toronto is balanced at 4.9 months of inventory, and the headline for your clients is resilience underneath a monthly dip. Average price of $979,684 fell 3.1% from July but is down only 1.1% year over year, the shallowest annual decline among the larger regions, so the market here is holding firmer than the monthly figure suggests.",
+      "price": "The median at $770,000 is down 3.7% year over year while the average posts its third consecutive monthly decline. Tell your sellers the annual softness is modest, so they need not chase the market down, and remind buyers that the month over month move offers a near term opening on well priced listings.",
+      "balance": "SNLR of 38.3% edged up 0.2 points and has risen seven months straight, keeping the market balanced with demand gradually strengthening. At the table, that near even footing means your clients should weigh closing flexibility and conditions alongside price rather than expecting one side to concede.",
+      "activity": "Sales of 1,767 were essentially flat at down 0.2% while new listings fell 7.4% and active inventory dropped 9.8%. At 46 days on market, the fastest pace among the regions, with a 97% sale to list ratio, tell your buyers that sharp listings move quickly and your sellers that correct pricing still draws prompt attention."
     },
     "York Region": {
       "kpis": "",
@@ -34,22 +34,22 @@
       "activity": ""
     },
     "Durham": {
-      "kpis": "Durham is a balanced market that is running tighter than most of the GTA. The key point for clients is that inventory here is the leanest in the region, which supports pricing despite softer sales. Your sellers hold a firmer position than the balanced label suggests, and your buyers should prepare accordingly.",
-      "price": "The average price is $819,569, down 1.8% on the month and down 4.4% year over year. The median at $766,000 is down 4.8% from last year. Use current comparables with your sellers and note to your buyers that the annual pullback has created more accessible entry points in this market.",
-      "balance": "SNLR is 41.3%, up 0.2 points and up 6 months in a row, with just 3.4 months of inventory, the tightest of any region here. That balance leans toward sellers at the margin. Advise your buyers to come in with clean, competitive offers on the homes they want.",
-      "activity": "Sales of 602 were down 9.5% year over year, while new listings fell 15.1% to 1,423 and active listings dropped 8.7% to 2,467. Homes average 46 days on market at 98% of list, the strongest ratio in the region. That close to list result tells your sellers that accurate pricing gets rewarded here."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     },
     "Dufferin": {
-      "kpis": "Dufferin is a balanced market and one of the few areas showing gains on both price and sales. Keep in mind this is a small market where monthly figures move sharply, so read the numbers with that context. Still, the direction gives your sellers something positive to point to.",
-      "price": "The average price is $755,759, up 4.3% on the month and down only 0.5% year over year. The median of $755,378 is up 3.5% from last year, a rare annual gain in this dataset. Tell your sellers the local trend has firmed, while reminding buyers that thin volumes can swing these figures.",
-      "balance": "SNLR sits at 41.0%, up 1.2 points on the month, the largest monthly gain among these regions, with 4.5 months of inventory. That points to firming demand within a still balanced setting. Your buyers retain negotiating room, but the momentum is moving toward sellers.",
-      "activity": "Sales rose 7.7% to 28, while new listings fell 24.4% to 59 and active listings dropped 11.7% to 143. Homes average 64 days on market, the longest here, at 97% of list. The long selling time paired with rising sales tells your sellers to price patiently and your buyers to take time on due diligence."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     },
     "Simcoe": {
-      "kpis": "Simcoe is a balanced market carrying the most inventory in the region and the softest annual price picture. The most useful message for clients is that this is a slower, supply heavy market where buyers have real choice. Your sellers need to compete on price and condition to stand out.",
-      "price": "The average price is $810,904, down 1.3% on the month and down 9.2% year over year, now down 3 months in a row. The median at $780,000 is down 6.0% from last year. This is the steepest annual pullback among these regions, so ground your sellers firmly in current comparables.",
-      "balance": "SNLR sits at 32.6%, up 0.3 points and up 6 months in a row, but months of inventory is 6.0, the highest here. That gives your buyers clear leverage at the table. Sellers who overprice will sit, so realistic listing strategy is essential.",
-      "activity": "Sales of 178 were down 1.7% year over year, while new listings fell 12.6% to 505 and active listings dropped 9.2% to 1,107. Homes average 57 days on market at 97% of list. With ample supply, tell your sellers that sharp pricing drives interest and your buyers that there is no need to rush."
+      "kpis": "",
+      "price": "",
+      "balance": "",
+      "activity": ""
     }
   }
 }
