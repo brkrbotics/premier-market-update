@@ -70,7 +70,7 @@ def pts_change(cur, base):
 
 
 def moi_of(row):
-    return row["moiTrend"] if row["moiTrend"] is not None else row["avgMOI"]
+    return row["avgMOI"] if row["avgMOI"] is not None else row["moiTrend"]
 
 
 def bucket(moi):

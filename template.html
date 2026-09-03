@@ -187,8 +187,8 @@ const MONTHLONG = {'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'
   '07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec'};
 const prettyLabel = l => MONTHLONG[l.slice(5)]+" '"+l.slice(2,4);
 
-// MOI bucket using smoothed MOI Trend, falling back to Avg MOI.
-function moiOf(row){ return row.moiTrend!=null ? row.moiTrend : row.avgMOI; }
+// MOI bucket using Avg MOI (active listings / sales), falling back to MOI Trend.
+function moiOf(row){ return row.avgMOI!=null ? row.avgMOI : row.moiTrend; }
 function bucket(moi){
   if(moi==null) return null;
   if(moi<3)  return {key:'seller',   label:"Seller's Market",   cls:'seller', sent:'hot'};
