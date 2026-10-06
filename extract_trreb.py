@@ -142,6 +142,23 @@ def parse_page(pdf, page_no, keep_raw, verbose=False):
     return out
 
 
+def parse_page_text(pdf, page_no):
+    """Line-based parser for TRREB's September 2026+ layout, where each row is
+    clean text: the area name followed by the 11 values. Reads values from the
+    right so names with digits (Toronto W01) stay intact."""
+    text = (pdf.pages[page_no - 1].extract_text() or "").replace("\x00", "")
+    out = []
+    for line in text.splitlines():
+        toks = line.split()
+        if len(toks) <= N_NUM:
+            continue
+        vals, name = toks[-N_NUM:], " ".join(toks[:-N_NUM])
+        if not name or not all(NUM_RE.match(v) for v in vals):
+            continue
+        out.append([name] + (vals if KEEP_RAW else [to_number(v) for v in vals]))
+    return out
+
+
 def main():
     pdf_path = Path(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else Path("/mnt/user-data/uploads/mw2605.pdf")
     out_dir = Path(sys.argv[2]) if len(sys.argv) > 2 and not sys.argv[2].startswith("-") else Path("/mnt/user-data/outputs")
@@ -153,6 +170,9 @@ def main():
     with pdfplumber.open(pdf_path) as pdf:
         for pg in PAGES:
             rows = parse_page(pdf, pg, KEEP_RAW, verbose)
+            text_rows = parse_page_text(pdf, pg)
+            if len(text_rows) > len(rows):     # Sep 2026+ layout
+                rows = text_rows
             out_csv = out_dir / f"{stem}_p{pg}_{PAGE_LABELS.get(pg, f'page{pg}')}.csv"
             with open(out_csv, "w", newline="", encoding="utf-8") as f:
                 w = csv.writer(f)
