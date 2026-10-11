@@ -26,7 +26,7 @@ import openpyxl
 
 from pipeline import COMMENTARY_JSON, ORDER, XLSX, generate_dashboard, region_rows
 
-MODEL = "claude-opus-4-8"
+MODEL = "claude-opus-5-5"
 
 SYSTEM_PROMPT = """You write the monthly agent commentary for a GTA resale housing dashboard built on TRREB Market Watch data. The audience is licensed real estate agents. Every section has one job: give the agent the plain language read of this month's numbers so they can explain the market to their buyer and seller clients with confidence.
 
@@ -181,11 +181,15 @@ def draft(month_name, facts):
     )
     response = client.messages.create(
         model=MODEL,
-        max_tokens=8000,
+        max_tokens=16000,
         thinking={"type": "adaptive"},
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_msg}],
-        output_config={"format": {"type": "json_schema", "schema": output_schema()}},
+        output_config={
+            # Opus 5.5 defaults to medium effort; high matches what Opus 4.8 ran at.
+            "effort": "high",
+            "format": {"type": "json_schema", "schema": output_schema()},
+        },
     )
     if response.stop_reason == "refusal":
         raise RuntimeError("model declined the request")
